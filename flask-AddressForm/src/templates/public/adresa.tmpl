@@ -4,9 +4,9 @@
 {% block content %}
 <form method="POST" id='insert-form'>
 {{ form.hidden_tag() }}
-{{ render_input_field(form.jmeno) }}
-{{ render_input_field(form.prijmeni) }}
-{{ render_input_field(form.datumNarozeni) }}
+{{ render_input_field(form.adresa) }}
+{{ render_input_field(form.mesto) }}
+{{ render_input_field(form.PSC) }}
 {{ render_submit() }}
 </form>
 {% endblock %}
