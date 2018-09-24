@@ -1,0 +1,37 @@
+/src/public/views.py
+ - from .forms import LogUserForm, secti, masoform, AddressForm!!!
+
+ - @blueprint.route('/adresa', methods=['GET'])
+def adresa():
+    form = AddressForm()
+    return render_template('public/adresa.tmpl',form=form)
+
+/src/public/forms.py
+
+ - class AddressForm(Form):
+    adresa = TextField('Street', validators=[
+        Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        InputRequired(message="You can't leave this empty")
+    ])
+    mesto = TextField('Town/City', validators=[
+        Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        InputRequired(message="You can't leave this empty")
+    ])
+    PSC = TextField('ZIP Code') 
+
+/src/templates/public/adresa.tmpl
+
+ - {% from "macros/fields.tmpl" import render_input_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+ {% block content %}
+<form method="POST" id='insert-form'>
+{{ form.hidden_tag() }}
+{{ render_input_field(form.adresa) }}
+{{ render_input_field(form.mesto) }}
+{{ render_input_field(form.PSC) }}
+{{ render_submit() }}
+</form>
+{% endblock %}
+
