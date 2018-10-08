@@ -4,8 +4,8 @@
 {% block title %}Forgotten password{% endblock %}
 
 {% block content %}
-  <h3>insert</h3>
-  <div class="form-group">Type in the email address you used when signing up and we'll send you a link to reset your password.</div>
+  <h3>Registration</h3>
+  <div class="container"><h4>Write down your username and email.</h4>
   <form method="POST" id='insert-form'>
     {{ form.hidden_tag() }}
     {{ render_input_field(form.username) }}
@@ -13,4 +13,7 @@
       {{ render_input_field(form.datumprvnihopristupu) }}
     {{ render_submit() }}
   </form>
+      <br>
+    <a href="/gameuserlist"><button class="btn btn-success">User List</button></a>
+    </div>
 {% endblock %}

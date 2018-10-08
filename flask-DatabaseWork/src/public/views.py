@@ -60,3 +60,8 @@ def gameusere(id):
         user.update(**form.data)
         flash("Ulozeno",category="info")
     return render_template('public/gameuser.tmpl', form=form)
+
+@blueprint.route('/gameuserlist', methods=['GET','POST'])
+def gameuserlist():
+    userList = db.session.query(GameUser).all()
+    return render_template('public/gameuserlist.tmpl', userList = userList)
