@@ -26,6 +26,10 @@
                 <td><a href="/gameuseredit/{{ row.id }}">{{ row.username }}</a></td>
                 <td>{{ row.email }}</td>
                 <td>{{ row.datumprvnihopristupu }}</td>
+                <td>
+                    <a href="/gameuseredit/{{ row.id }}"><button class="btn btn-info">Edit</button></a>
+                    <a href="/gameuserdelete/{{ row.id }}"><button class="btn btn-danger">Delete</button></a>
+                </td>
             </tr>
         {% endfor %}
 

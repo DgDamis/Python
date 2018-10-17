@@ -1,7 +1,7 @@
 """
 Logic for dashboard related routes
 """
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from .forms import LogUserForm, secti,masoform, VstupForm, gameuserForm
 from ..data.database import db
 from ..data.models import LogUser, GameUser
@@ -46,7 +46,7 @@ def masof():
     return render_template('public/maso.tmpl', form=form)
 
 @blueprint.route('/newgameuser', methods=['GET','POST'])
-def gameuseredit():
+def gameuseradd():
     form = gameuserForm()
     if form.validate_on_submit():
         new_gameuser = GameUser.create(**form.data)
@@ -59,9 +59,19 @@ def gameusere(id):
     if form.validate_on_submit():
         user.update(**form.data)
         flash("Ulozeno",category="info")
+        return redirect(request.args.get('next') or url_for('public.gameuserlist'))
     return render_template('public/gameuser.tmpl', form=form)
 
 @blueprint.route('/gameuserlist', methods=['GET','POST'])
 def gameuserlist():
     userList = db.session.query(GameUser).all()
     return render_template('public/gameuserlist.tmpl', userList = userList)
+
+@blueprint.route('/gameuserdelete/<int:id>', methods=['GET','POST'])
+def GameUserDel(id):
+    delUser = db.session.query(GameUser).get(id)
+    db.session.delete(delUser)
+    db.session.commit()
+    flash("Smazano", category="info")
+    return redirect(request.args.get('next') or url_for('public.gameuserlist'))
+
