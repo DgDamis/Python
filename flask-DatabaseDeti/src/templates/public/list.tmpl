@@ -1,0 +1,44 @@
+{% from "macros/fields.tmpl" import render_input_field,render_checkbox_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}Forgotten password{% endblock %}
+
+{% block content %}
+  <h3>User List</h3>
+
+        <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Datum Narozeni
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in detiList %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td><a href="/edit/{{ row.id }}">{{ row.jmeno }}</a></td>
+                <td>{{ row.prijmeni }}</td>
+                <td>{{ row.datumNarozeni }}</td>
+                <td>
+                    <a href="/edit/{{ row.id }}"><button class="btn btn-info">Edit</button></a>
+                    <a href="/delete/{{ row.id }}"><button class="btn btn-danger">Delete</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+    <a href="/zapis"><button class="btn btn-info">Registration</button></a>
+
+{% endblock %}

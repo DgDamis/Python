@@ -1,0 +1,16 @@
+{% from "macros/fields.tmpl" import render_input_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}Zapis zbozi{% endblock %}
+
+{% block content %}
+  <h3>Zapsani zbozi do registru</h3>
+  <div class="form-group">Zadejte id, nazev, pocet kusu a cenu daneho zbozi.</div>
+  <form method="POST" id='insert-form'>
+    {{ form.hidden_tag() }}
+    {{ render_input_field(form.jmeno) }}
+    {{ render_input_field(form.prijmeni) }}
+    {{ render_input_field(form.datumNarozeni) }}
+    {{ render_submit() }}
+  </form>
+{% endblock %}

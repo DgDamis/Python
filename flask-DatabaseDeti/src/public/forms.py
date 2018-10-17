@@ -1,7 +1,7 @@
 import re
 
 from flask_wtf import Form
-from wtforms.fields import BooleanField, TextField, PasswordField, DateTimeField, IntegerField,SelectField
+from wtforms.fields import BooleanField, TextField, PasswordField, DateTimeField, IntegerField,SelectField, DateField
 from wtforms.validators import EqualTo, Email, InputRequired, Length
 
 from ..data.models import User, LogUser
@@ -44,3 +44,10 @@ class secti(Form):
 class masoform(Form):
     typ=SelectField('Typ', choices=[(1, "Hovezi"), (2, "Veprove")], default=2)
 
+
+class DetiForm(Form):
+
+    #id = TextField('ID')
+    jmeno = TextField('Jmeno')
+    prijmeni = TextField('Prijmeni')
+    datumNarozeni = DateField('Datum narozeni')
